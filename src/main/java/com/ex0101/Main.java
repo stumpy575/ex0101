@@ -1,0 +1,41 @@
+package com.ex0101;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    final int WINDOW_WIDTH = 500;
+    final int WINDOW_HEIGHT = 400;
+
+    public static String name = "";
+    public static Integer age = null;
+
+    @Override
+    public void start(Stage stage) throws Exception {
+
+        // Carrega la vista inicial des del fitxer FXML
+        UtilsViews.addView(getClass(), "View0", "/assets/view0.fxml");
+        UtilsViews.addView(getClass(), "View1", "/assets/view1.fxml");
+
+        Scene scene = new Scene(UtilsViews.parentContainer);
+
+        stage.setScene(scene);
+        stage.setTitle("JavaFX App");
+        stage.setWidth(WINDOW_WIDTH);
+        stage.setHeight(WINDOW_HEIGHT);
+        stage.show();
+
+        // Afegeix una icona només si no és un Mac
+        if (!System.getProperty("os.name").contains("Mac")) {
+            Image icon = new Image("file:icons/icon.png");
+            stage.getIcons().add(icon);
+        }
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
